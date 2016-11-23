@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.app.business.bo.Tache" table="tache">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="titreTache" type="java.lang.String">
+			<column name="titre_tache" />
+		</property>
+		<property name="duree" type="java.lang.Integer">
+			<column name="duree" />
+		</property>
+
+		<property name="dureeActuelle" type="java.lang.Integer">
+			<column name="duree_actuelle" />
+		</property>
+
+		<property name="completed" type="java.lang.Boolean">
+			<column name="completed" />
+		</property>
+
+		<set name="cras">
+			<key column="id_tache" />
+			<one-to-many class="com.app.business.bo.Cra" />
+		</set>
+
+		<many-to-one name="projet" column="id_projet"
+			class="com.app.business.bo.Projet" />
+
+		<many-to-one name="utilisateur" column="id_utilisateur"
+			class="com.app.business.bo.Utilisateur" />
+
+	</class>
+</hibernate-mapping>

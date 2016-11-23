@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.app.business.bo.Projet" table="projet">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+
+		<property name="codeProjet" type="java.lang.String">
+			<column name="code_projet" />
+		</property>
+		<property name="nomProjet" type="java.lang.String">
+			<column name="nom_projet" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column name="description" />
+		</property>
+		<property name="dateCreation" type="date">
+			<column name="date_creation" />
+		</property>
+
+		<set name="taches">
+			<key column="id_projet" />
+			<one-to-many class="com.app.business.bo.Tache" />
+		</set>
+
+		<many-to-one name="utilisateur" column="id_utilisateur"
+			class="com.app.business.bo.Utilisateur" />
+
+	</class>
+</hibernate-mapping>
